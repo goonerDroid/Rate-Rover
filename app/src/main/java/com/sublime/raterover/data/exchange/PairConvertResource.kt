@@ -13,19 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover
-
-import junit.framework.Assert.assertEquals
-import org.junit.Test
+package com.sublime.raterover.data.exchange
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * Item representing response for conversion of any currency pair
  */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-}
+data class PairConvertResource(
+    val result: String,
+    val documentation: String,
+    val termsOfUse: String,
+    val timeLastUpdateUnix: Long,
+    val timeLastUpdateUtc: String,
+    val timeNextUpdateUnix: Long,
+    val timeNextUpdateUtc: String,
+    val baseCode: String,
+    val targetCode: String,
+    val conversionRate: Double,
+    val conversionResult: Double
+)

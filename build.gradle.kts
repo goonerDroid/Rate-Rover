@@ -13,7 +13,6 @@ subprojects {
             target("**/*.kt")
             targetExclude("$buildDir/**/*.kt")
             targetExclude("bin/**/*.kt")
-            ktlint(libs.versions.ktlint.get()).userData(mapOf("android" to "true"))
             licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
         }
     }
@@ -23,12 +22,13 @@ subprojects {
             // Treat all Kotlin warnings as errors (disabled by default)
             allWarningsAsErrors = project.hasProperty("warningsAsErrors") && project.property("warningsAsErrors") as Boolean
 
-            freeCompilerArgs += listOf(
-                "-Xopt-in=kotlin.RequiresOptIn",
-                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                "-Xopt-in=kotlinx.coroutines.FlowPreview",
-                "-Xopt-in=kotlin.Experimental"
-            )
+            freeCompilerArgs +=
+                listOf(
+                    "-Xopt-in=kotlin.RequiresOptIn",
+                    "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                    "-Xopt-in=kotlinx.coroutines.FlowPreview",
+                    "-Xopt-in=kotlin.Experimental",
+                )
 
             // Set JVM target to 1.8
             jvmTarget = "1.8"
