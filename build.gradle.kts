@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.spotless)
     alias(libs.plugins.kotlinSerialization) apply false
+    alias(libs.plugins.hilt.gradlePlugin) apply false
 }
 
 subprojects {
@@ -17,5 +18,4 @@ subprojects {
             licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
         }
     }
-
 }
