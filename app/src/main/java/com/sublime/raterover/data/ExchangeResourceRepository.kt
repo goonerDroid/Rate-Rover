@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.data.exchange
+package com.sublime.raterover.data
+
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Data layer implementation for [PairConvertResource]
@@ -22,5 +24,5 @@ interface ExchangeResourceRepository {
     /**
      * Fetches available exchange rate resource
      */
-    fun monitor(): PairConvertResource
+    fun monitor(): Flow<PairConvertResource>
 }
