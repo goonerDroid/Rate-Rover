@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
+    id("jacoco")
 }
+
+val jacocoTestReport = tasks.register("jacocoTestReport")
 
 android {
     namespace = "com.sublime.raterover"
@@ -46,6 +49,41 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    testCoverage.jacocoVersion = "0.8.7"
+
+    androidComponents {
+        val coverageExclusions = listOf(
+            "**/R.class",
+            "**/R\$*.class",
+            "**/BuildConfig.*",
+            "**/Manifest*.*"
+        )
+
+        onVariants(selector().all()) { variant ->
+            val testTaskName = "test${variant.name.capitalize()}UnitTest"
+
+            val reportTask = tasks.register<JacocoReport>("jacoco${testTaskName.capitalize()}Report") {
+                dependsOn(testTaskName)
+
+                reports {
+                    xml.required.set(true)
+                    html.required.set(true)
+                }
+
+                classDirectories.setFrom(
+                    fileTree("$buildDir/tmp/kotlin-classes/${variant.name}") {
+                        exclude(coverageExclusions)
+                    }
+                )
+
+                sourceDirectories.setFrom(files("$projectDir/src/main/java", "$projectDir/src/main/kotlin"))
+                executionData.setFrom(file("$buildDir/jacoco/${testTaskName}.exec"))
+            }
+
+            jacocoTestReport.configure { dependsOn(reportTask) }
         }
     }
 }
