@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.data.fake
+package com.sublime.raterover.domain.fake
 
-import com.sublime.raterover.data.ExchangeResourceRepository
-import com.sublime.raterover.data.PairConvertResource
+import com.sublime.raterover.domain.repository.ExchangeResourceRepository
+import com.sublime.raterover.domain.entity.PairConvertResource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

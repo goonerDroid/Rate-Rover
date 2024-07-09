@@ -13,13 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover
+package com.sublime.raterover.domain.entity
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
-
-/**
- * [Application] class for Rate Rover
- */
-@HiltAndroidApp
-class RateRoverApp : Application()
+data class Currency(
+    val code: String,
+    val name: String,
+)

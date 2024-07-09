@@ -13,25 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.data
+package com.sublime.raterover.domain
 
-import kotlinx.serialization.Serializable
+sealed class ResultWrapper<out E, out V> {
+    data class Success<out V>(
+        val result: V,
+    ) : ResultWrapper<Nothing, V>()
 
-/**
- * Item representing response for conversion of any currency pair
- */
-
-@Serializable
-data class PairConvertResource(
-    val result: String,
-    val documentation: String,
-    val termsOfUse: String,
-    val timeLastUpdateUnix: Long,
-    val timeLastUpdateUtc: String,
-    val timeNextUpdateUnix: Long,
-    val timeNextUpdateUtc: String,
-    val baseCode: String,
-    val targetCode: String,
-    val conversionRate: Double,
-    val conversionResult: Double,
-)
+    data class Failure<out E>(
+        val exception: E,
+    ) : ResultWrapper<E, Nothing>()
+}

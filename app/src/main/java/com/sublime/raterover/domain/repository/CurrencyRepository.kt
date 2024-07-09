@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover
+package com.sublime.raterover.domain.repository
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.sublime.raterover.domain.ResultWrapper
+import com.sublime.raterover.domain.entity.ConvertFactor
+import com.sublime.raterover.domain.entity.Currency
 
-/**
- * [Application] class for Rate Rover
- */
-@HiltAndroidApp
-class RateRoverApp : Application()
+interface CurrencyRepository {
+    fun getCurrencies(): ResultWrapper<Exception, List<Currency>>
+
+    fun getConversionFactor(): ResultWrapper<Exception, ConvertFactor>
+}

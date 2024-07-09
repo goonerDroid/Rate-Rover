@@ -15,8 +15,8 @@
  */
 package com.sublime.raterover
 
-import com.sublime.raterover.data.fake.FakeExchangeRepository
-import com.sublime.raterover.data.fake.FakePairConvertDataResource
+import com.sublime.raterover.domain.fake.FakeExchangeRepository
+import com.sublime.raterover.domain.fake.FakePairConvertDataResource
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher

@@ -13,13 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover
+package com.sublime.raterover.domain.entity
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import kotlinx.serialization.Serializable
 
 /**
- * [Application] class for Rate Rover
+ * Item representing response for conversion of any currency pair
  */
-@HiltAndroidApp
-class RateRoverApp : Application()
+
+@Serializable
+data class PairConvertResource(
+    val result: String,
+    val documentation: String,
+    val termsOfUse: String,
+    val timeLastUpdateUnix: Long,
+    val timeLastUpdateUtc: String,
+    val timeNextUpdateUnix: Long,
+    val timeNextUpdateUtc: String,
+    val baseCode: String,
+    val targetCode: String,
+    val conversionRate: Double,
+    val conversionResult: Double,
+)

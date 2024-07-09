@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover
+package com.sublime.raterover.domain.entity
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import java.time.Instant
 
-/**
- * [Application] class for Rate Rover
- */
-@HiltAndroidApp
-class RateRoverApp : Application()
+data class ConvertFactor(
+    val basCurrency: Currency,
+    val targetCurrency: Currency,
+    val rate: Double,
+    val lastUpdate: Instant,
+)
