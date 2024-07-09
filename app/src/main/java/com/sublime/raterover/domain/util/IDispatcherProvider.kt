@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.domain.repository
+package com.sublime.raterover.domain.util
 
-import com.sublime.raterover.domain.util.ResultWrapper
-import com.sublime.raterover.domain.entity.ConvertFactor
-import com.sublime.raterover.domain.entity.Currency
+import kotlin.coroutines.CoroutineContext
 
-interface CurrencyRepository {
-    suspend fun getCurrencies(): ResultWrapper<Exception, List<Currency>>
+interface IDispatcherProvider {
+    fun dispatchUIContext(): CoroutineContext
 
-    suspend fun getConversionFactor(): ResultWrapper<Exception, ConvertFactor>
+    fun dispatchIOContext(): CoroutineContext
 }

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.domain.repository
+package com.sublime.raterover.domain.util
 
-import com.sublime.raterover.domain.util.ResultWrapper
-import com.sublime.raterover.domain.entity.ConvertFactor
-import com.sublime.raterover.domain.entity.Currency
+sealed class ResultWrapper<out E, out V> {
+    data class Success<out V>(
+        val result: V,
+    ) : ResultWrapper<Nothing, V>()
 
-interface CurrencyRepository {
-    suspend fun getCurrencies(): ResultWrapper<Exception, List<Currency>>
-
-    suspend fun getConversionFactor(): ResultWrapper<Exception, ConvertFactor>
+    data class Failure<out E>(
+        val exception: E,
+    ) : ResultWrapper<E, Nothing>()
 }

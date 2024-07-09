@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.domain
+package com.sublime.raterover.domain.util
 
-sealed class ResultWrapper<out E, out V> {
-    data class Success<out V>(
-        val result: V,
-    ) : ResultWrapper<Nothing, V>()
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
-    data class Failure<out E>(
-        val exception: E,
-    ) : ResultWrapper<E, Nothing>()
+object DispatcherProvider : IDispatcherProvider {
+    override fun dispatchUIContext(): CoroutineContext = Dispatchers.Main
+
+    override fun dispatchIOContext(): CoroutineContext = Dispatchers.IO
 }
