@@ -23,4 +23,13 @@ sealed class ResultWrapper<out E, out V> {
     data class Failure<out E>(
         val exception: E,
     ) : ResultWrapper<E, Nothing>()
+
+    companion object Factory {
+        inline fun <V> build(function: () -> V) =
+            try {
+                Success(function.invoke())
+            } catch (e: Exception) {
+                Failure(e)
+            }
+    }
 }

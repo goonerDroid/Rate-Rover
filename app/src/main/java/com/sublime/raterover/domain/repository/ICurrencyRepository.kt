@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.domain.entity
+package com.sublime.raterover.domain.repository
 
-import kotlinx.datetime.Instant
+import com.sublime.raterover.domain.entity.ConvertFactor
+import com.sublime.raterover.domain.entity.Currency
+import com.sublime.raterover.domain.util.ResultWrapper
 
-data class ConvertFactor(
-    val basCurrency: Currency,
-    val targetCurrency: Currency,
-    val rate: Double,
-    val lastUpdate: Instant,
-)
+interface ICurrencyRepository {
+    suspend fun getCurrencies(): ResultWrapper<Exception, List<Currency>>
+
+    suspend fun getConversionFactor(
+        baseCurrency: Currency,
+        targetCurrency: Currency,
+    ): ResultWrapper<Exception, ConvertFactor>
+}

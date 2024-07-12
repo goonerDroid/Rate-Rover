@@ -13,13 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.domain.entity
+package com.sublime.raterover.infra.datasource.remote.dto
 
-import kotlinx.datetime.Instant
+import com.sublime.raterover.domain.entity.Currency
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-data class ConvertFactor(
-    val basCurrency: Currency,
-    val targetCurrency: Currency,
-    val rate: Double,
-    val lastUpdate: Instant,
+@Serializable
+data class SupportedCode(
+    val documentation: String,
+    val result: String,
+    @SerialName("supported_codes") val supportedCodes: List<List<String>>,
+    @SerialName("terms_of_use") val termsOfUse: String,
 )
+
+fun SupportedCode.toDomain() =
+    supportedCodes.map {
+        Currency(
+            it.first(),
+            it.last(),
+        )
+    }

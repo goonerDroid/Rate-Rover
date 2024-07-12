@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sublime.raterover.domain.repository
+package com.sublime.raterover.infra.datasource.remote
 
-import com.sublime.raterover.domain.util.ResultWrapper
-import com.sublime.raterover.domain.entity.ConvertFactor
 import com.sublime.raterover.domain.entity.Currency
+import com.sublime.raterover.domain.util.ResultWrapper
+import com.sublime.raterover.infra.datasource.remote.dto.PairConversion
+import com.sublime.raterover.infra.datasource.remote.dto.SupportedCode
 
-interface CurrencyRepository {
-    suspend fun getCurrencies(): ResultWrapper<Exception, List<Currency>>
+interface IRemoteDataSource {
+    suspend fun getCurrencies(): ResultWrapper<Exception, SupportedCode>
 
-    suspend fun getConversionFactor(): ResultWrapper<Exception, ConvertFactor>
+    suspend fun getConversionFactor(
+        baseCurrency: Currency,
+        targetCurrency: Currency,
+    ): ResultWrapper<Exception, PairConversion>
 }
