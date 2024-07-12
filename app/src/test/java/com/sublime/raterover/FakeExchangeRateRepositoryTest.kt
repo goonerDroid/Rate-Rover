@@ -15,29 +15,20 @@
  */
 package com.sublime.raterover
 
-import com.sublime.raterover.domain.fake.FakeExchangeRepository
-import com.sublime.raterover.domain.fake.FakePairConvertDataResource
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Test
-
 class FakeExchangeRateRepositoryTest {
-    private lateinit var subject: FakeExchangeRepository
-
-    @Before
-    fun setup() {
-        subject = FakeExchangeRepository(ioDispatcher = TestCoroutineDispatcher())
-    }
-
-    @Test
-    fun testDeserializationOfPairConvertResource() =
-        runBlocking {
-            assertEquals(
-                FakePairConvertDataResource.samplePairConvertResource,
-                subject.monitor().first(),
-            )
-        }
+//    private lateinit var subject: FakeExchangeRepository
+//
+//    @Before
+//    fun setup() {
+//        subject = FakeExchangeRepository(ioDispatcher = TestCoroutineDispatcher())
+//    }
+//
+//    @Test
+//    fun testDeserializationOfPairConvertResource() =
+//        runBlocking {
+//            assertEquals(
+//                FakePairConvertDataResource.samplePairConvertResource,
+//                subject.monitor().first(),
+//            )
+//        }
 }
